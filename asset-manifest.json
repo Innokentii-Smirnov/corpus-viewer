@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/corpus-viewer/static/css/main.57c87909.css",
+    "main.js": "/corpus-viewer/static/js/main.e9515d8b.js",
+    "static/js/453.d64938b0.chunk.js": "/corpus-viewer/static/js/453.d64938b0.chunk.js",
+    "index.html": "/corpus-viewer/index.html",
+    "main.57c87909.css.map": "/corpus-viewer/static/css/main.57c87909.css.map",
+    "main.e9515d8b.js.map": "/corpus-viewer/static/js/main.e9515d8b.js.map",
+    "453.d64938b0.chunk.js.map": "/corpus-viewer/static/js/453.d64938b0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.57c87909.css",
+    "static/js/main.e9515d8b.js"
+  ]
+}
