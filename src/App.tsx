@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
+import {ConlluDocument, parseConllu} from '@pictalk-speech-made-easy/conllu-parser';
 import './App.css';
+import {CorpusViewer} from './CorpusViewer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const corpusUrl = 'https://raw.githubusercontent.com/Innokentii-Smirnov/OldNubianUDTreebank/refs/heads/main/OldNubian.conllu';
+
+const defaultCorpus: ConlluDocument = {
+    format: 'conllu',
+    metadata: {},
+    sentences: []
 }
 
-export default App;
+export default function App() {
+  const [corpus, setCorpus] = useState(defaultCorpus);
+
+  useEffect(() => {
+    fetch(corpusUrl)
+      .then(response => response.text())
+      .then(text => {
+        setCorpus(parseConllu(text));
+    });
+  }, [])
+
+  return (
+    <CorpusViewer conlluDocument={corpus}/>
+  );
+}
