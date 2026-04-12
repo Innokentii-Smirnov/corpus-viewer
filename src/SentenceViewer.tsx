@@ -1,15 +1,20 @@
 import {Sentence, Token} from '@pictalk-speech-made-easy/conllu-parser';
-import {WordViewer} from './WordViewer';
+import {MultiwordToken, isMultiword, groupTokens} from './multiwordToken';
+import {MultiwordTokenViewer} from './MultiwordTokenViewer';
 
 interface IProps {
   sentence: Sentence;
 }
 
 export function SentenceViewer({sentence}: IProps) {
-  const {tokens} = sentence;
+  const tokens = groupTokens(sentence);
   return (
     <div className="sentence-viewer">
-      {tokens.map((token: Token, index: number) => <WordViewer token={token} key={index}/>)}
+      {tokens.map((token: MultiwordToken | Token, index: number) =>
+        isMultiword(token)
+        ? <MultiwordTokenViewer multiwordToken={token} key={index}/>
+        : <MultiwordTokenViewer multiwordToken={{form: token.form, words: [token]}} key={index}/>
+      )}
     </div>
   );
 }
