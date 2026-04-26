@@ -46,3 +46,8 @@ code {
 .word-field {
   display: table-row;
 }
+
+.with-margins {
+  margin-left: 15px;
+  margin-right: 15px;
+}
