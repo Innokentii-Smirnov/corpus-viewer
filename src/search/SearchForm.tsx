@@ -30,21 +30,24 @@ export function SearchForm<F extends string>({ initialQuery, onSubmit }: IProps<
   };
 
   return (<div>
-    <div>
+    <table>
       {query.map((field: SearchQueryField<F>, index: number) => {
-        return (<div key={field.name} className="table-row">
-          <label className="table-cell p-2 border-y border-r border-slate-500"
-                 htmlFor={field.name}>{field.name}</label>
-          <input className="table-cell p-2 border-y border-r border-slate-500"
-                 name={field.name} value={field.value}
-                 onChange={event => setQuery(update(query, { [index]: { value: {$set: event.target.value }} }))}/>
-          <select className="table-cell p-2 border-y border-r border-slate-500"
-                  onChange={event => setQuery(update(query, { [index]: { mode: {$set: event.target.value as SearchMode }} }))}>
-            {searchModes.map(searchMode => <option key={searchMode} value={searchMode}>{searchMode}</option>)}
-          </select>
-        </div>);
+        return (<tr key={field.name}>
+          <td>
+            <label htmlFor={field.name}>{field.name}</label>
+          </td>
+          <td>
+            <input name={field.name} value={field.value}
+                  onChange={event => setQuery(update(query, { [index]: { value: {$set: event.target.value }} }))}/>
+          </td>
+          <td>
+            <select onChange={event => setQuery(update(query, { [index]: { mode: {$set: event.target.value as SearchMode }} }))}>
+              {searchModes.map(searchMode => <option key={searchMode} value={searchMode}>{searchMode}</option>)}
+            </select>
+          </td>
+        </tr>);
       })}
-    </div>
+    </table>
     <button onClick={() => validateAndSumbit(query)}>
       Submit seach query
     </button>
