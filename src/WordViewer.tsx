@@ -9,7 +9,8 @@ interface IProps {
 export function WordViewer({token, query}: IProps) {
   const {form, misc} = token;
   const {MSeg, MGloss} = misc === '_' ? {MSeg: '', MGloss: ''} : misc;
-  const matchedQuery = tokenMatchesQuery(token, query);
+  const matchedQuery = tokenMatchesQuery(token, query) &&
+    query.some(field => field.value !== '');
   const className = matchedQuery ? "word-viewer bold" : "word-viewer";
   return (
     <div className={className}>
