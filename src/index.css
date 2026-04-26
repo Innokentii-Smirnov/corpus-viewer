@@ -16,6 +16,10 @@ code {
   display: block;
 }
 
+.translation {
+  padding-left: 15px;
+}
+
 .multiword-token-viewer {
   padding: 15px;
   display: inline-block;
