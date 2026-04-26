@@ -1,12 +1,14 @@
 import {Sentence, Token} from '@pictalk-speech-made-easy/conllu-parser';
 import {MultiwordToken, isMultiword, groupTokens} from './multiwordToken';
 import {MultiwordTokenViewer} from './MultiwordTokenViewer';
+import {TokenSearchQuery} from './tokenSearch';
 
 interface IProps {
   sentence: Sentence;
+  query: TokenSearchQuery;
 }
 
-export function SentenceViewer({sentence}: IProps) {
+export function SentenceViewer({sentence, query}: IProps) {
   const tokens = groupTokens(sentence);
   const {translation} = sentence.metadata;
   return (
@@ -14,8 +16,8 @@ export function SentenceViewer({sentence}: IProps) {
     <div className="sentence-viewer">
       {tokens.map((token: MultiwordToken | Token, index: number) =>
         isMultiword(token)
-        ? <MultiwordTokenViewer multiwordToken={token} key={index}/>
-        : <MultiwordTokenViewer multiwordToken={{form: token.form, words: [token]}} key={index}/>
+        ? <MultiwordTokenViewer multiwordToken={token} query={query} key={index}/>
+        : <MultiwordTokenViewer multiwordToken={{form: token.form, words: [token]}} query={query} key={index}/>
       )}
     </div>
     <div className="translation">

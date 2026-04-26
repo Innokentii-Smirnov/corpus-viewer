@@ -5,12 +5,14 @@ import {defaultLookupConfig} from './search/lookupConfig';
 type TokenQueryField = 'form' | 'MSeg' | 'MGloss' | 'Gloss' | 'upos' | 'Gender' | 'Number'| 'Case'
 | 'Definite' | 'VerbForm' | 'Mood' | 'Tense' | 'Person' | 'Voice' | 'Degree' | 'PronType';
 
+export type TokenSearchQuery = SearchQuery<TokenQueryField>;
+
 export const tokenQueryFields: TokenQueryField[] = [
   'form', 'MSeg', 'MGloss', 'Gloss', 'upos', 'Gender', 'Number', 'Case', 'Definite', 'VerbForm',
   'Mood', 'Tense', 'Person', 'Voice', 'Degree', 'PronType'
 ]
 
-export function tokenMatchesQuery(token: Token, query: SearchQuery<TokenQueryField>): boolean {
+export function tokenMatchesQuery(token: Token, query: TokenSearchQuery): boolean {
   const {feats, misc} = token;
   const searchableObject = {
     ...token,

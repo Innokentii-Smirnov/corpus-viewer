@@ -41,7 +41,7 @@ export function CorpusViewer({conlluDocument}: IProps) {
                 onSubmit={query => setQuery(query)}/>
     </div>
     <div>
-      {filteredSentences.map((sentence: Sentence, index: number) => <SentenceViewer sentence={sentence} key={index}/>)}
+      {filteredSentences.map((sentence: Sentence, index: number) => <SentenceViewer sentence={sentence} query={query} key={index}/>)}
     </div>
     </div>
   );
